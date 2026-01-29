@@ -8,18 +8,21 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QuantityMeasurementAppTest {
 
     public static class Foot{
-        private final double value;
+        private final double value1;
+        private final double value2;
 
-        public Foot(double value) {
-            this.value = value;
+
+        public Foot(double value1, double value2) {
+            this.value1 = value1;
+            this.value2 = value2;
         }
     }
 
     @Test
     public void testFeetEquality_SameValue(){
 
-        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
-        QuantityMeasurementApp.Feet f2 = new QuantityMeasurementApp.Feet(1.0);
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0, 2.0);
+        QuantityMeasurementApp.Feet f2 = new QuantityMeasurementApp.Feet(1.0, 2.0);
 
         assertEquals(f1, f2); //same value
 
@@ -27,15 +30,15 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testFeetEquality_DifferentValue(){
-        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
-        QuantityMeasurementApp.Feet f3 = new QuantityMeasurementApp.Feet(3.0);
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0, 2.0);
+        QuantityMeasurementApp.Feet f3 = new QuantityMeasurementApp.Feet(3.0, 4.0);
 
         assertNotEquals(f1, f3); // different value
     }
 
     @Test
     public void testFeetEquality_NullComparision(){
-        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0, 2.0);
         QuantityMeasurementApp.Feet f4 = null;
 
         assertNotEquals(f1, f4); // null check
@@ -43,15 +46,16 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testFeetEquality_SameReference(){
-        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0, 2.0);
+        QuantityMeasurementApp.Feet f2 = f1;
 
-        assertEquals(f1, f1); // same reference
+        assertEquals(f1, f2); // same reference
     }
 
     @Test
     public void testFeetEquality_DifferentClass(){
-        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
-        Foot foot = new Foot(1.0);
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0, 2.0);
+        Foot foot = new Foot(1.0, 2.0);
 
         assertNotEquals(f1, foot); // different classes
     }
