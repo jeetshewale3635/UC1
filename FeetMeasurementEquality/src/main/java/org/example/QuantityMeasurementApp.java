@@ -7,7 +7,6 @@ public class QuantityMeasurementApp {
     public static class Feet {
         private final double value;
 
-
         public Feet(double value) {
             this.value = value;
         }
@@ -27,6 +26,14 @@ public class QuantityMeasurementApp {
         @Override
         public int hashCode() {
             return Objects.hash(value);
+        }
+    }
+
+    public static class Foot{
+        private final double value;
+
+        public Foot(double value) {
+            this.value = value;
         }
     }
 
