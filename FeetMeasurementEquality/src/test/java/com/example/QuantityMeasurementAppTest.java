@@ -7,6 +7,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class QuantityMeasurementAppTest {
 
+    public static class Foot{
+        private final double value;
+
+        public Foot(double value) {
+            this.value = value;
+        }
+    }
+
     @Test
     public void testFeetEquality_SameValue(){
 
@@ -43,7 +51,7 @@ public class QuantityMeasurementAppTest {
     @Test
     public void testFeetEquality_DifferentClass(){
         QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
-        QuantityMeasurementApp.Foot foot = new QuantityMeasurementApp.Foot(1.0);
+        Foot foot = new Foot(1.0);
 
         assertNotEquals(f1, foot); // different classes
     }

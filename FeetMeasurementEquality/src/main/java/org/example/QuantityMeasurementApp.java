@@ -29,13 +29,7 @@ public class QuantityMeasurementApp {
         }
     }
 
-    public static class Foot{
-        private final double value;
 
-        public Foot(double value) {
-            this.value = value;
-        }
-    }
 
     public static void main(String[] args) {
 
