@@ -1,11 +1,11 @@
 package com.apps.quantitymeasurement;
 
-public class Length {
+public class QuantityLength {
 
     private final double value;
     private final LengthUnit unit;
 
-    public Length(double value, LengthUnit unit) {
+    public QuantityLength(double value, LengthUnit unit) {
 
         if (unit == null){
             throw new IllegalArgumentException("Unit must not be a null");
@@ -37,7 +37,7 @@ public class Length {
         return  this.value * unit.getConversionFactor();
     }
 
-    public boolean compare(Length thatLength){
+    public boolean compare(QuantityLength thatLength){
         if(thatLength == null) return false;
 
         return Double.compare(Math.round(convertToBaseUnit()) , Math.round(thatLength.convertToBaseUnit())) == 0;
@@ -48,22 +48,22 @@ public class Length {
         if(obj == null) return  false;
         if(this == obj) return true;
         if(this.getClass() != obj.getClass()) return false;
-        return this.compare((Length) obj);
+        return this.compare((QuantityLength) obj);
     }
 
     public static void main(String[] args){
-        Length l1 = new Length(1.0, LengthUnit.FEET);
-        Length l2 = new Length(12.0, LengthUnit.INCHES);
+        QuantityLength l1 = new QuantityLength(1.0, LengthUnit.FEET);
+        QuantityLength l2 = new QuantityLength(12.0, LengthUnit.INCHES);
 
         System.out.println("Are length equals? "+ l1.equals(l2));
 
-        Length l3 = new Length(1.0, LengthUnit.YARDS);
-        Length l4 = new Length(36.0, LengthUnit.INCHES);
+        QuantityLength l3 = new QuantityLength(1.0, LengthUnit.YARDS);
+        QuantityLength l4 = new QuantityLength(36.0, LengthUnit.INCHES);
 
         System.out.println("Are length equals? "+ l3.equals(l4));
 
-        Length l5 = new Length(100.0, LengthUnit.CENTIMETERS);
-        Length l6 = new Length(39.3701, LengthUnit.INCHES);
+        QuantityLength l5 = new QuantityLength(100.0, LengthUnit.CENTIMETERS);
+        QuantityLength l6 = new QuantityLength(39.3701, LengthUnit.INCHES);
 
         System.out.println("Are length equals? "+ l5.equals(l6));
 
