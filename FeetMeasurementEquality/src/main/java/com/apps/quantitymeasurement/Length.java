@@ -11,6 +11,10 @@ public class Length {
             throw new IllegalArgumentException("Unit must not be a null");
         }
 
+        if(Double.isNaN(value) || Double.isInfinite(value)){
+            throw new IllegalArgumentException("Please enter the floating point value");
+        }
+
         this.value = value;
         this.unit = unit;
     }
@@ -51,21 +55,35 @@ public class Length {
         return this.compare((Length) obj);
     }
 
+    public Length convertTo(LengthUnit targetUnit){
+
+        if(targetUnit == null){
+            throw new IllegalArgumentException("Target unit must not be null");
+        }
+        Length length1 = new Length(this.value, this.unit);
+
+        double baseUnit = length1.convertToBaseUnit();
+        return new Length(Math.round(baseUnit / targetUnit.getConversionFactor() * 100.0) / 100.0, targetUnit);
+    }
+
     public static void main(String[] args){
-        Length l1 = new Length(1.0, LengthUnit.FEET);
-        Length l2 = new Length(12.0, LengthUnit.INCHES);
+        Length length1 = new Length(1, LengthUnit.FEET);
 
-        System.out.println("Are length equals? "+ l1.equals(l2));
+        System.out.print(length1);
 
-        Length l3 = new Length(1.0, LengthUnit.YARDS);
-        Length l4 = new Length(36.0, LengthUnit.INCHES);
+        System.out.print(" is ");
+        Length length2 = length1.convertTo(LengthUnit.INCHES);
+        System.out.println(length2);
+    }
 
-        System.out.println("Are length equals? "+ l3.equals(l4));
+    @Override
+    public String toString() {
+        return "Length{" +
+                value + " "+ unit +
+                '}';
+    }
 
-        Length l5 = new Length(100.0, LengthUnit.CENTIMETERS);
-        Length l6 = new Length(39.3701, LengthUnit.INCHES);
-
-        System.out.println("Are length equals? "+ l5.equals(l6));
-
+    public double getValue() {
+        return value;
     }
 }
